@@ -96,7 +96,10 @@ var
   uBits: Cardinal;
 begin
   offset := y * FrowSize + TMathUtils.Asr(x, 5);
-  try
+if (offset<0) or (offset>high(FBits)) then
+	result := false
+else
+try
     bits := Fbits[offset];
     uBits := Cardinal(bits);
     shift := (x and $1F);
